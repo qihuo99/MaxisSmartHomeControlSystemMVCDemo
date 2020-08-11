@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxisSmartHomeControlSystemMVCDemo", "MaxisSmartHomeControlSystemMVCDemo\MaxisSmartHomeControlSystemMVCDemo.csproj", "{4B2C3148-A082-4116-9FD5-F563B4D4ED30}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B2C3148-A082-4116-9FD5-F563B4D4ED30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2C3148-A082-4116-9FD5-F563B4D4ED30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2C3148-A082-4116-9FD5-F563B4D4ED30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2C3148-A082-4116-9FD5-F563B4D4ED30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6792F9C7-528F-4245-90D1-60C9D511C913}
+	EndGlobalSection
+EndGlobal
