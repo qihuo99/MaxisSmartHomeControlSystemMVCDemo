@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RexliteDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ADSLSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ADSL_IP_Port" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ADSL_IP_Port" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="Device">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="DeviceID" />
+      <PropertyRef Name="DeviceSN" />
+      <PropertyRef Name="IsDeviceNameUpdated" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeviceID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeviceSN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeviceDefaultName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeviceNameUpdated" Type="Boolean" Nullable="false" />
+    <Property Name="UpdatedDeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="DeviceTmp">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="DeviceID" />
+      <PropertyRef Name="DeviceSN" />
+      <PropertyRef Name="IsDeviceNameUpdated" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeviceID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeviceSN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeviceDefaultName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeviceNameUpdated" Type="Boolean" Nullable="false" />
+    <Property Name="UpdatedDeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="LocationSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="LocationName" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="MiscLookup">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="LookupName" />
+      <PropertyRef Name="KeyValue" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LookupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KeyValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserPassword" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserEmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserMobilePhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+      <PropertyRef Name="UserRoleName" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="UserRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserRoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="7" />
+  </EntityType>
+  <EntityContainer Name="RexliteDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADSLSettings" EntityType="Self.ADSLSetting" />
+    <EntitySet Name="Devices" EntityType="Self.Device" />
+    <EntitySet Name="DeviceTmps" EntityType="Self.DeviceTmp" />
+    <EntitySet Name="LocationSettings" EntityType="Self.LocationSetting" />
+    <EntitySet Name="MiscLookups" EntityType="Self.MiscLookup" />
+    <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <FunctionImport Name="GetUserByUserEmail" ReturnType="Collection(RexliteDBModel.GetUserByUserEmail_Result)">
+      <Parameter Name="UserEmail" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserRole" ReturnType="Collection(RexliteDBModel.GetUserRole_Result)" />
+  </EntityContainer>
+  <ComplexType Name="GetUserByUserEmail_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UserPassword" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UserEmailAddress" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="UserMobilePhoneNumber" Nullable="true" MaxLength="30" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="UpdateDate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserRole_Result">
+    <Property Type="Int32" Name="UserRoleID" Nullable="false" />
+    <Property Type="String" Name="UserRoleDesc" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

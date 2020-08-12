@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RexliteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Rexlite.dbo.ADSLSettings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ADSLSettings">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ADSL_IP_Port" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ADSL_IP_Port" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Rexlite.dbo.Device' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Device">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="DeviceID" />
+      <PropertyRef Name="DeviceSN" />
+      <PropertyRef Name="IsDeviceNameUpdated" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeviceSN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DeviceDefaultName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDeviceNameUpdated" Type="bit" Nullable="false" />
+    <Property Name="UpdatedDeviceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Rexlite.dbo.DeviceTmp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DeviceTmp">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="DeviceID" />
+      <PropertyRef Name="DeviceSN" />
+      <PropertyRef Name="IsDeviceNameUpdated" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeviceID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeviceSN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DeviceDefaultName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDeviceNameUpdated" Type="bit" Nullable="false" />
+    <Property Name="UpdatedDeviceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Rexlite.dbo.LocationSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LocationSetting">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="LocationName" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Rexlite.dbo.MiscLookup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MiscLookup">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="LookupName" />
+      <PropertyRef Name="KeyValue" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LookupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KeyValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Rexlite.dbo.UserLogin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="UserPassword" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserEmailAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserMobilePhoneNumber" Type="nvarchar" MaxLength="30" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Rexlite.dbo.UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+      <PropertyRef Name="UserRoleName" />
+      <PropertyRef Name="CreateDate" />
+    </Key>
+    <Property Name="UserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <Function Name="GetUserByUserEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserEmail" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="GetUserRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="RexliteDBModelStoreContainer">
+    <EntitySet Name="ADSLSettings" EntityType="Self.ADSLSettings" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ADSLSettings].[ID] AS [ID], 
+    [ADSLSettings].[ADSL_IP_Port] AS [ADSL_IP_Port], 
+    [ADSLSettings].[UserID] AS [UserID], 
+    [ADSLSettings].[Note] AS [Note], 
+    [ADSLSettings].[CreateDate] AS [CreateDate], 
+    [ADSLSettings].[UpdateDate] AS [UpdateDate]
+    FROM [dbo].[ADSLSettings] AS [ADSLSettings]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Device" EntityType="Self.Device" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Device].[ID] AS [ID], 
+    [Device].[DeviceID] AS [DeviceID], 
+    [Device].[DeviceSN] AS [DeviceSN], 
+    [Device].[DeviceDefaultName] AS [DeviceDefaultName], 
+    [Device].[Description] AS [Description], 
+    [Device].[IsDeviceNameUpdated] AS [IsDeviceNameUpdated], 
+    [Device].[UpdatedDeviceName] AS [UpdatedDeviceName], 
+    [Device].[CreateDate] AS [CreateDate], 
+    [Device].[UpdateDate] AS [UpdateDate]
+    FROM [dbo].[Device] AS [Device]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DeviceTmp" EntityType="Self.DeviceTmp" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DeviceTmp].[ID] AS [ID], 
+    [DeviceTmp].[DeviceID] AS [DeviceID], 
+    [DeviceTmp].[DeviceSN] AS [DeviceSN], 
+    [DeviceTmp].[DeviceDefaultName] AS [DeviceDefaultName], 
+    [DeviceTmp].[Description] AS [Description], 
+    [DeviceTmp].[IsDeviceNameUpdated] AS [IsDeviceNameUpdated], 
+    [DeviceTmp].[UpdatedDeviceName] AS [UpdatedDeviceName], 
+    [DeviceTmp].[CreateDate] AS [CreateDate], 
+    [DeviceTmp].[UpdateDate] AS [UpdateDate]
+    FROM [dbo].[DeviceTmp] AS [DeviceTmp]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LocationSetting" EntityType="Self.LocationSetting" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LocationSetting].[ID] AS [ID], 
+    [LocationSetting].[LocationName] AS [LocationName], 
+    [LocationSetting].[Description] AS [Description], 
+    [LocationSetting].[UserID] AS [UserID], 
+    [LocationSetting].[CreateDate] AS [CreateDate], 
+    [LocationSetting].[UpdateDate] AS [UpdateDate]
+    FROM [dbo].[LocationSetting] AS [LocationSetting]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MiscLookup" EntityType="Self.MiscLookup" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MiscLookup].[ID] AS [ID], 
+    [MiscLookup].[LookupName] AS [LookupName], 
+    [MiscLookup].[KeyValue] AS [KeyValue], 
+    [MiscLookup].[Description] AS [Description], 
+    [MiscLookup].[Category] AS [Category], 
+    [MiscLookup].[Note] AS [Note], 
+    [MiscLookup].[CreateDate] AS [CreateDate], 
+    [MiscLookup].[UpdateDate] AS [UpdateDate]
+    FROM [dbo].[MiscLookup] AS [MiscLookup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserLogin" EntityType="Self.UserLogin" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserLogin].[ID] AS [ID], 
+    [UserLogin].[UserName] AS [UserName], 
+    [UserLogin].[UserPassword] AS [UserPassword], 
+    [UserLogin].[UserEmailAddress] AS [UserEmailAddress], 
+    [UserLogin].[UserMobilePhoneNumber] AS [UserMobilePhoneNumber], 
+    [UserLogin].[CreateDate] AS [CreateDate], 
+    [UserLogin].[UpdateDate] AS [UpdateDate]
+    FROM [dbo].[UserLogin] AS [UserLogin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserRole].[UserRoleID] AS [UserRoleID], 
+    [UserRole].[UserRoleName] AS [UserRoleName], 
+    [UserRole].[Description] AS [Description], 
+    [UserRole].[CreateDate] AS [CreateDate], 
+    [UserRole].[UpdateDate] AS [UpdateDate]
+    FROM [dbo].[UserRole] AS [UserRole]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -1,1 +1,231 @@
-﻿This is Login Page
+﻿@model MaxisSmartHomeControlSystemMVCDemo.Models.UserLogin
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    html, body {
+        height: 100%;
+    }
+
+    body {
+        background-color: transparent;
+        background-position: center center;
+        color: #262626;
+        font-family: Sans-serif, "Times New Roman", Times, serif;
+    }
+
+    div.vertical {
+        padding: 2px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .loginSubTitile {
+        color: #AD8C42;
+        font-size: 30px;
+        font-weight: normal;
+        margin: 0px;
+    }
+
+    .loginTextBox {
+        background-color: transparent;
+        width: 100%;
+        height: 55%;
+        margin: 1px 1px 1px 1px;
+        color: #131313;
+        font-size: 25px;
+        font-weight: normal;
+        display: inline-block;
+        text-align: left;
+        border-bottom: 1px solid #656565;
+    }
+
+    .loginTextEntryTip {
+        width: 100%;
+        font-size: 12px;
+        color: #131313;
+        display: inline-block;
+        text-align: right;
+        margin-top: -20px;
+    }
+
+    .loginTextInner {
+        background-color: transparent;
+        border: 1px solid transparent; /* #656565 */
+        color: #131313;
+        font-size: 12px;
+        padding: 1px; /*padding-top, padding-right, padding-bottom, padding-left */
+        margin: 7px 0px 0px 0px;
+    }
+
+    .break {
+        content: " ";
+        display: block;
+        margin: 0.02em 0;
+    }
+
+    .imgHover {
+        cursor: pointer;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .field-validation-error {
+        white-space: nowrap;
+        font-size: 14px;
+        color: red;
+    }
+
+    input::-webkit-input-placeholder {
+        background-color: transparent;
+        color: #A9A9A9 !important;
+        font-size: 14px;
+    }
+    /* Firefox 18- */
+
+    input:-moz-placeholder {
+        background: #ccc !important;
+        color: #131313 !important;
+        font-size: 12px;
+    }
+    /* Firefox 19+ */
+    input::-moz-placeholder {
+        background: #ccc !important;
+        color: #131313 !important;
+        font-size: 12px;
+    }
+    /*
+    input:-ms-input-placeholder {
+        color: #A9A9A9 !important;
+        font-size: 14px;
+    }
+    */
+    /*Change text in autofill textbox only in Chrome*/
+    input {
+        background: transparent !important;
+    }
+
+        input:-webkit-autofill {
+            -webkit-text-fill-color: #ccc !important;
+            -webkit-box-shadow: inset 0 0 0px 9999px #ccc inset !important;
+        }
+
+    label:focus,
+    label:active {
+        background: #ccc !important;
+    }
+
+    .showhidepwd {
+        margin: -11px -1px 0px 5px; /*  padding-top, padding-right, padding-bottom, padding-left */
+        width: -56px;
+        height: 50px;
+        border: none;
+        background: transparent;
+    }
+</style>
+<div id="loginDiv">
+    @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+    {
+        <div id="mainContentDiv" class="mainContent">
+            <div class="horizontal Row1" style="background-color: #FFFFFF; border: 1px solid transparent; width:550px;height:70px; margin: 0 auto;top:1px; position:relative;justify-content: center;">
+                <h1>Log In</h1>
+            </div>
+            <br />
+            <div class="" style="background-color: #ccc;width:355px;margin: 0 auto;">
+                <br /><br />
+                <div class="horizontal Row2" style="border: 1px solid transparent; width:252px;height:62px; margin: 0 auto; top:5px; position:relative;background-color: #OCOCOC;">
+                    <span class="loginTextBox">
+                        @Html.LabelFor(model => model.UserName, "")
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "loginTextInner", @placeholder = "Enter Login ID", style = "width: 150px", maxlength = "16", alt = "User ID", id = "userName" } })
+                    </span>
+                </div>
+                <div class="horizontal underText1" style="border: 1px solid transparent;top:0.01em; width:250px; margin: 0 auto; position:relative; background-color: #OCOCOC;">
+                    @Html.ValidationMessageFor(model => model.UserName)
+                    <span class="loginTextEntryTip">
+                        ( <span id="countUserName">0</span> /16 )&nbsp;
+                    </span>
+                </div>
+                <br />
+                <div class="horizontal Row3" style="border: 1px solid transparent;  width:252px;height:62px; margin: 0 auto; top:5px; position:relative;background-color: #OCOCOC;">
+                    <span class="loginTextBox">
+                        @Html.LabelFor(model => model.UserPassword, "")
+                        @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "loginTextInner", @placeholder = "Enter Password", style = "width:185px", maxlength = "8", alt = "User Password", id = "userPwd" } })
+                        <span style="margin: 0px 0px 0px 0px;"><img id="imgTogglePwd" src="/images/icon_hidepwd.png" alt="mask password" class="showhidepwd"></span>
+                    </span>
+                </div>
+                <div class="horizontal underText2" style="border: 1px solid transparent;top:0.1em; width:250px; margin: 0 auto;top:0px; position:relative; background-color: #OCOCOC;">
+                    @Html.ValidationMessageFor(model => model.UserPassword)
+                    <span class="loginTextEntryTip">
+                        ( <span id="countPwd">0</span> /8 )&nbsp;
+                    </span>
+                </div>
+                <br />
+                <div class="horizontal invalidLoginErrorMsg" style="border: 1px solid transparent;top:0.1em; width:430px; margin: 0 auto; position:relative; background-color: #OCOCOC;">
+                    <label id="InvalidLoginErrMsg" class="field-validation-error">
+                        @Html.DisplayFor(model => model.LoginErrorMessage)
+                    </label>
+                </div><br />
+            </div>
+            <br class="break" />
+            <div class="horizontal RowOK2Btn" style="border: 1px solid transparent; width:355px;height:75px; margin: 0 auto;top:5px; position:relative;background-color: #999999;">
+                <button type="submit" class="imgHover">
+                    <span id="OK_img" style="font-size:23px;margin-top: 6px;">OK</span>
+                </button>
+            </div> <br />
+            <div class="horizontal RowSignUpBtn" style="border: 1px solid transparent; width:355px;height:75px; margin: 0 auto;top:5px; position:relative;background-color: #999999; text-align:center;">
+                <span id="SignUp_img" class="imgHover" style="font-size:23px;margin-top: 20px;">Sign Up</span>
+            </div><br />
+            <div class="horizontal ForgetPwdBtn" style="border: 1px solid transparent; width:50%; height:35px; margin: 0 auto;top:5px; position:relative;background-color: transparent; text-align:center;">
+                @Html.ActionLink("Forget Password", "Index", "ForgetUserPassword", null, new { @class = "", @style = "color:#131313; font-size:12px; margin: -6px 0px 0px 0px;" })
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('input[placeholder]').placeholderLabel();
+        initCountValues();
+
+        $("#userName").on("input", function () {
+            $(this).addClass("loginTextInner");
+            $("#InvalidLoginErrMsg").hide();
+            //$(this).css("loginTextInner");
+            $("#countUserName").text(this.value.length);
+        });
+
+        $("#userPwd").on("input", function () {
+            $("#InvalidLoginErrMsg").hide();
+            $("#countPwd").text(this.value.length);
+        });
+
+        $('#SignUp_img').click(function () {
+            var uri = "/SignUp/";
+            console.log("uri = " + uri);
+            window.location.href = uri;
+        });
+
+        $("#imgTogglePwd").click(function (e) {
+            e.preventDefault();
+            //alert("image pwd clicked");
+            var x = document.getElementById("userPwd");
+            if (x.type === "password") {
+                x.type = "text";
+                $("#imgTogglePwd").attr('src', "/images/icon_showpwd.png");
+            } else {
+                x.type = "password";
+                $("#imgTogglePwd").attr('src', "/images/icon_hidepwd.png");
+           }
+        });
+
+        function initCountValues() {
+            $("#countUserName").text($("#userName").val().length);
+            $("#countPwd").text($("#userPwd").val().length);
+        }
+
+    });
+</script>
