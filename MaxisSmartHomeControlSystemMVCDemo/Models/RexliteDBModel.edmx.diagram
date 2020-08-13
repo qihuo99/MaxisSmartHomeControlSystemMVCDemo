@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="dcdb9798aa5f41cdb9d0b62436a3a91d" Name="Diagram1">
+      <Diagram DiagramId="dcdb9798aa5f41cdb9d0b62436a3a91d" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="RexliteDBModel.ADSLSetting" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RexliteDBModel.Device" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RexliteDBModel.DeviceTmp" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

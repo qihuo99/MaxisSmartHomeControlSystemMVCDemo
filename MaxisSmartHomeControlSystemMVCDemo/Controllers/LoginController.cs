@@ -28,6 +28,7 @@ namespace MaxisSmartHomeControlSystemMVCDemo.Controllers
 
                 if (userDetail == null)
                 {
+                    
                     userModel.LoginErrorMessage = "Invalid user name or password";
                     return View("Index", userModel);
                 }

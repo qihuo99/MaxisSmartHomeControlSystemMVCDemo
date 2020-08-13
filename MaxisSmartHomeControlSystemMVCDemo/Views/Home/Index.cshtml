@@ -1,31 +1,260 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+
+    if (Session["userName"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
 }
+<style>
+    html, body {
+        height: 100%;
+    }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    body {
+        background-color: transparent;
+        background-position: center center;
+    }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    .HomeMainContent { /* this css should center and scale to fit the web page */
+        background-color: transparent;
+        border: 1px solid transparent;
+        position: absolute;
+        width: 60%;
+        height: 60%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0px;
+        margin: auto;
+        text-align: center;
+    }
+
+    div.vertical {
+        padding: 3px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .imgSixClass {
+        bottom: 0px;
+        margin: 0px;
+        display: flex;
+    }
+
+    .imgSixClassText {
+        vertical-align: top;
+        font-size: 16px;
+        bottom: 0px;
+        margin: 0px 0px 0px 0px; /* margin-top, margin-right, margin-bottom, margin-left */
+    }
+
+    .imgSixClassVirtualText {
+        vertical-align: bottom;
+        font-size: 16px;
+        bottom: 0px;
+        margin: 0px 0px 0px 0px; /* margin-top, margin-right, margin-bottom, margin-left */
+        padding: -65px 0px 0px 0px;
+    }
+
+    .titleContent {
+        color: bisque;
+        margin-top: 10px;
+        float: right;
+        /* margin: 0px 6px -12px -50px;  margin-top, margin-right, margin-bottom, margin-left */
+    }
+
+    .virtualholder {
+        background: transparent;
+        margin: 0px 0px 0px 0px;
+        border: 6px dotted black;
+        overflow: hidden;
+        max-width: 134px;
+        max-height: 83px;
+        width: 135px;
+        height: 85px;
+        text-align: center;
+    }
+</style>
+<div id="MAXDeviceTop" class="MAXDeviceTopDiv" style="background-color: #ccc;">
+    <div style="padding: 10px 0px 0px 0px; margin: -20px 0px 0px 16px; float:left;">
+        <img id="backBtn" src="/images/icon_back.png" width="200px" height="100px">
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="inner" style="padding: 0px; float:right; color:#000000;">
+        <div class="popr" data-id="1">
+            <span class="dot" style="margin: 14px 27px 0px 0px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/icon_defaultIcon.png" style="padding: 5px; margin: -12px 0px 0px 13px; float:left; z-index: 100;" width="58px" height="58px">
+            </span>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="showUserDataDiv" style=""><p class="showUserDataMsg">Welcome!&nbsp;<span id="showUserIDMenuTop"></span></p>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    <div id="SubDiv" class="">
+        <div class="popr-box" data-box-id="1">
+            <a href="@Url.Action("Logout", "Login")" class=""><div class="popr-item">登出</div></a>
+            <a href="@Url.Action("Index", "Home")" class=""><div class="popr-item">回到主頁</div></a>
+            <a href="javascript:displayDeviceIDSN();" id="MAXLite3DisplayID"><div class="popr-item" id="feugait">顯示設備ID</div></a>
+            <a href="DeviceSystemStatusSettings.html"><div class="popr-item">顯示系統狀態</div></a>
+            <a href="@Url.Action("ResetUserPassword", "Home")"><div class="popr-item">重設密碼</div></a>
+            <a href="@Url.Action("Index", "PermissionSettings")"><div class="popr-item">權限設置</div></a>
+        </div>
     </div>
 </div>
+<div id="mainContentDiv" class="HomeMainContent" style="position:absolute;border: 1px solid transparent;">
+    <div class="horizontal Row1" style="border: 1px solid transparent; width:935px;height:350px; margin: 0 auto;top:5px; border: 1px solid transparent;">
+        <div class="vertical" style="border: 1px solid transparent; position:relative;float:left;">
+            <img class="imgSixClass" id="MAXLite1_img" src="images/icon_ML-1_off_subtitle_L.png" width="200px" height="201px" style="border: 1px solid transparent; " />
+            <span class="imgSixClassText"></span>
+        </div>
+        <div class="vertical" style="border: 1px solid transparent; position:relative;float:left;">
+            <img class="imgSixClass" id="MAXLite2_img" src="images/icon_ML-2_off.png" width="200px" height="201px" style="border: 1px solid transparent; " />
+            <span class="imgSixClassText">MAXLite M'L-2</span>
+        </div>
+        <div class="vertical" style="border: 1px solid transparent; position:relative;float:left;">
+            <img class="imgSixClass" id="MAXLite3_img" src="images/icon_ML-3_off.png" width="200px" height="201px" style="border: 1px solid transparent; " />
+            <span class="imgSixClassText">MAXLite M'L-3</span>
+        </div>
+        <div class="vertical" style="border: 1px solid transparent; margin: 0px 0px 0px 0px; relative;float:left;">
+            <img class="imgSixClass" id="Virtual_img" src="images/icon_VirtualBlock.png" width="200px" height="201px" style="border: 1px solid transparent;z-index: -1; " />
+            <span class="imgSixClassVirtualText">Virtual&nbsp;</span>
+        </div>
+    </div><br />
+    <div class="horizontal Row2" style="border: 1px solid transparent; width:935px;height:350px; margin: 0 auto;top:5px; border: 1px solid transparent;">
+        <div class="vertical" style="border: 1px solid transparent; position:relative;float:left;">
+            <img class="imgSixClass" id="MAXAir_img" src="images/icon_MA_off.png" width="200px" height="201px" style="border: 1px solid transparent; " />
+            <span class="imgSixClassText">MAXAir M'A</span>
+        </div>
+        <div class="vertical" style="border: 1px solid transparent; position:relative;float:left;">
+            <img class="imgSixClass" id="MAXScene_img" src="images/icon_MS_off.png" width="200px" height="201px" style="border: 1px solid transparent; " />
+            <span class="imgSixClassText">MAXScene M'S</span>
+        </div>
+        <div class="vertical" style="border: 1px solid transparent; position:relative;float:left;">
+            <img class="imgSixClass" id="MAXBook_img" src="images/icon_MB_off.png" width="200px" height="201px" style="border: 1px solid transparent; " />
+            <span class="imgSixClassText">MAXBook M'B</span>
+        </div>
+    </div>
+</div>
+@Html.Hidden("loginUserName", Session["userName"])
+
+<script>
+    $(document).ready(function () {
+        var getDevJsonList = JSON.parse('@Html.Raw(ViewBag.DeviceJsonList)');
+
+        var MAXLite1_status = false, MAXLite2_status = false, MAXLite3_status = false;
+        var MAXAir_status = false, MAXScene_status = false, MAXBook_status = false;
+        //console.log("getDevJsonList = " + getDevJsonList);
+        var loginUserName = $('#loginUserName').val();
+        console.log("loginUserName = " + loginUserName);
+        $('#showUserIDMenuTop').text(loginUserName + " ");
+
+        $('.popr').popr();
+        //$("#backBtn").click(function () {
+        //    window.history.back();
+        //});
+
+        //initBleDeviceJson();
+
+        function initBleDeviceJson() {
+            for (var i = 0; i < getDevJsonList.length; ++i) {
+                var bleId = getDevJsonList[i].BleID;
+                var sn = getDevJsonList[i].BleSN;
+                var bleName = getDevJsonList[i].BleName;
+
+                console.log("bleId = " + bleId);
+                console.log("sn =" + sn);
+                console.log("bleName =" + bleName);
+
+                var initDeviceStatus = setupBleDeviceStatus(bleId);
+            }
+        }
+
+        function setupBleDeviceStatus(condition) {
+            var stuff = {
+                '0A': function () {
+                    MAXBook_status = true;
+                    $('#MAXBook_img').attr('src', 'images/icon_MB_on.png');
+                    $('#MAXBook_img').hover(function () {
+                        $(this).css('cursor', 'pointer');
+                    });
+                    $("#MAXBook_img").click(function () {
+                        //alert('MAXBook_img btn clicked');
+                        var url = '@Url.Action("Index", "MAXBookDeviceList")';
+                        location.href = url;
+                    });
+                    return true;
+                },
+                '0B': function () {
+                    MAXScene_status = true;
+                    $('#MAXScene_img').attr('src', 'images/icon_MS_on.png');
+                    $('#MAXScene_img').hover(function () {
+                        $(this).css('cursor', 'pointer');
+                    });
+                    $("#MAXScene_img").click(function () {
+                        //alert('MAXScene_img btn clicked');
+                        var url = '@Url.Action("Index", "MAXSceneDeviceList")';
+                        location.href = url
+                    });
+                    return true;
+                },
+                '13': function () {
+                    MAXAir_status = true;
+                    $('#MAXAir_img').attr('src', 'images/icon_MA_on.png');
+                    $('#MAXAir_img').hover(function () {
+                        $(this).css('cursor', 'pointer');
+                    });
+                    $("#MAXAir_img").click(function () {
+                        //alert('MAXAir_img btn clicked');
+                        var url = '@Url.Action("Index", "MAXAirDeviceList")';
+                        location.href = url;
+                    });
+                    return true;
+                },
+                '14': function () {
+                    MAXLite1_status = true;
+                    $('#MAXLite1_img').attr('src', 'images/icon_ML-1_on.png');
+                    $('#MAXLite1_img').hover(function () {
+                        $(this).css('cursor', 'pointer');
+                    });
+                    $("#MAXLite1_img").click(function () {
+                        alert('MAXLite1_img btn clicked');
+                        var url = '@Url.Action("Index", "MAXLite1DeviceList")';
+                        location.href = url;
+                    });
+                    return true;
+                },
+                '16': function () {
+                    MAXLite2_status = true;
+                    $('#MAXLite2_img').attr('src', 'images/icon_ML-2_on.png');
+                    $('#MAXLite2_img').hover(function () {
+                        $(this).css('cursor', 'pointer');
+                    });
+                    $("#MAXLite2_img").click(function () {
+                        alert('MAXLite2_img btn clicked');
+                        var url = '@Url.Action("Index", "MAXLite2DeviceList")';
+                        location.href = url;
+                    });
+                    return true;
+                },
+                '18': function () {
+                    MAXLite3_status = true;
+                    $('#MAXLite3_img').attr('src', 'images/icon_ML-3_on.png');
+                    $('#MAXLite3_img').hover(function () {
+                        $(this).css('cursor', 'pointer');
+                    });
+                    $("#MAXLite3_img").click(function () {
+                        //alert('MAXLite3_img btn clicked');
+                        var url = '@Url.Action("Index", "MAXLite3DeviceList")';
+                        location.href = url;
+                    });
+                    return true;
+                }
+            };
+
+            if (typeof stuff[condition] !== 'function') {
+                return 'default';
+            }
+
+            return stuff[condition]();
+        }
+    });
+</script>

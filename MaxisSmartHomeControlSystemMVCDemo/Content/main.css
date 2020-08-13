@@ -1,0 +1,148 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    background-color: transparent;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 20px;
+    height: 100%;
+}
+
+.MAXDeviceTopDiv {
+    /*position: absolute;
+    background-color: transparent;
+    width: 990px;
+    height: 76px;
+    margin: 0 auto; */
+    position: absolute;
+    width: 1142px;
+    height: 76px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.MAXDeviceTitleDiv {
+    background-color: transparent;
+    color: #AD8C41;
+    height: 80px;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1px 5px 10px 15px; /*padding-top, padding-right, padding-bottom, padding-left */
+}
+
+.MAXDeviceList {
+    width: 110px;
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hrSt {
+    height: 0.01%;
+    width: 285px;
+    display: block;
+    background-color: #424242;
+    padding: 0;
+    margin: 0 auto;
+}
+.DeviceIDSNBlock {
+    border: none;
+    display: none;
+}
+.boxSt {
+    background-color: transparent;
+    cursor: pointer;
+    color: #131313;
+    font-size: 16px;
+    font-weight: bold;
+    top: 0;
+    left: 0;
+    border: none;
+    float: left;
+    padding: 0;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align:top;
+}
+
+.btnRenameEdit {
+    background: url(/images/icon_Rename.png);
+    background-repeat: no-repeat;
+    background-size: 40px 40px; /* w x h */
+    cursor: pointer;
+    width: 65px;
+    height: 40px;
+    align: bottom;
+    vertical-align: middle;
+    top: 0px;
+    left: 0px;
+    padding: 0px 0px 0px 10px; /* padding-top, padding-right, padding-bottom, padding-left */
+    float: right;
+    border: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    /*border-left: 2px solid #424242;*/
+}
+
+.btnSearch {
+    background: url(/images/icon_SearchDevice.png) no-repeat;
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+    cursor: pointer;
+    height: 30px;
+    width: 60px;
+    align: bottom;
+    vertical-align: middle;
+    padding: 0px 0px 0px 10px; /* padding-top, padding-right, padding-bottom, padding-left */
+    float: right;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: 2px solid #424242;
+}
+.dot {
+    height: 49px;
+    width: 49px;
+    background-color: #808080;
+    border-radius: 50%;
+    display: inline-block;
+    z-index: -100;
+    opacity: 0.7;
+    filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+
+.showUserDataDiv {
+    position: relative;
+}
+
+.showUserDataMsg {
+    position: absolute;
+    top: 33px;
+    right: 76px;
+}
+
+.mainContent {
+    background-color: transparent; /* blue */
+    margin: 0 auto;
+    width: 935px;
+    height: 600px;
+    border: 1px solid transparent;
+    padding: 0px 0px 0px 0px;
+    /* padding: 65px 60px 5px 60px;  */ /*padding-top, padding-right, padding-bottom, padding-left */
+}
+
+div.horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+.GrayOutImg {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
+}

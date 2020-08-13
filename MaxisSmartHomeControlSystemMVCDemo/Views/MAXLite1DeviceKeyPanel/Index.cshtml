@@ -1,0 +1,732 @@
+﻿@{
+    ViewBag.Title = "MAXLite1 Device Key Panel Index Page";
+
+    if (Session["userName"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+}
+<style>
+    html {
+        height: 80%;
+    }
+
+    body {
+        background-color: transparent;
+    }
+
+    div.vertical {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .subTitleDiv {
+        display: block;
+        margin: 0 auto;
+        color: #AD8C41;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .MaxLiteOnOffButton {
+        display: block;
+        margin: 0 auto;
+        color: #AD8C42;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .bottomDiv { /* this css will ensure the div stays on the bottom of page all the time */
+        background-color: transparent;
+        height: 20px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 5px;
+    }
+    /* ----------------------------------------------------------*/
+    .ui-widget-content {
+        border: 0px solid #ccc;
+        background: #262626
+    }
+
+    .ui-widget-header {
+        border: 0px solid #aaaaaa;
+        background: #AD8C42
+    }
+
+    .ui-slider {
+        position: relative;
+        text-align: left;
+    }
+
+        .ui-slider .ui-slider-handle {
+            height: 5px;
+            width: 5px;
+            position: absolute;
+            z-index: 2;
+            width: 1.2em;
+            height: 1.2em;
+            cursor: default;
+        }
+
+        .ui-slider .ui-slider-range {
+            position: absolute;
+            z-index: 1;
+            font-size: .7em;
+            display: block;
+            border: 0;
+            background-position: 10 10;
+        }
+
+    .ui-slider-horizontal {
+        height: .2em;
+        width: 300px;
+    }
+
+        .ui-slider-horizontal .ui-slider-handle {
+            top: -0.2em;
+            margin-left: -.6em;
+            width: 30px;
+            height: 8px;
+            border: 0;
+            background: black;
+        }
+
+        .ui-slider-horizontal .ui-slider-range {
+            top: 0;
+            height: 100%;
+        }
+
+        .ui-slider-horizontal .ui-slider-range-min {
+            left: 0;
+        }
+
+        .ui-slider-horizontal .ui-slider-range-max {
+            right: 70px;
+        }
+
+    .ui-slider-vertical {
+        height: 300em;
+        width: 1px;
+    }
+
+        .ui-slider-vertical .ui-slider-handle {
+            top: -0.1em;
+            margin-left: 0.1em;
+            width: 6px;
+            height: 30px;
+            border: 0;
+            background: black;
+        }
+
+        .ui-slider-vertical .ui-slider-range {
+            top: 0;
+            height: 1px;
+            width: 80px;
+        }
+
+        .ui-slider-vertical .ui-slider-range-min {
+            left: 0px;
+        }
+
+        .ui-slider-vertical .ui-slider-range-max {
+            right: 0px;
+        }
+
+    hr {
+        border-top: 1px solid #999999;
+    }
+
+    .ValidateTips {
+        color: red;
+    }
+</style>
+
+<div id="MAXDeviceTop" class="MAXDeviceTopDiv" style="background-color: #ccc;">
+    <div style="padding: 10px 0px 0px 0px; margin: -20px 0px 0px 16px; float:left;">
+        <img id="backBtn" src="/images/icon_back.png" width="200px" height="100px">
+    </div>
+    <div class="inner" style="padding: 0px; float:right; color:#000000;">
+        <div class="popr" data-id="1">
+            <span class="dot" style="margin: 14px 27px 0px 0px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/icon_defaultIcon.png" style="display:none;padding: 5px; margin: -12px 0px 0px 13px; float:left; z-index: 100;" width="58px" height="58px">
+            </span>
+        </div>
+    </div>
+    <div class="showUserDataDiv" style=""><p class="showUserDataMsg">Welcome!&nbsp;<span id="showUserIDMenuTop"></span>&nbsp;&nbsp;</p>&nbsp;&nbsp;</div>
+    <div id="SubDiv" class="">
+        <div class="popr-box" data-box-id="1" style="margin: 0px 100px 0px 0px;">
+            <a href="@Url.Action("Logout", "Login")" class=""><div class="popr-item">登出</div></a>
+            <a href="@Url.Action("Index", "Home")" class=""><div class="popr-item">回到主頁</div></a>
+            <a href="javascript:displayDeviceIDSN();" id="MAXLite1DisplayID"><div class="popr-item" id="feugait">顯示設備ID</div></a>
+            <a href="DeviceSystemStatusSettings.html"><div class="popr-item">顯示系統狀態</div></a>
+            <a href="@Url.Action("ResetUserPassword", "Home")"><div class="popr-item">重設密碼</div></a>
+            <a href="@Url.Action("Index", "PermissionSettings")"><div class="popr-item">權限設置</div></a>
+        </div>
+    </div>
+</div>
+
+<div class="mainDevListContent" style="margin: 0px, 0px, 0px, 0px; ">
+    <div class="deviceContent">
+        <div class="horizontal div1" style="border: 1px solid transparent; margin: 0px 2px 0px 0px;">
+            <div class="vertical v1" style="padding: 2px; border: 1px solid transparent; margin: 0, auto;background-color: transparent;">
+                <div class="horizontal div2" style="border-bottom: 1px solid black;border-right: 1px solid black; margin: 72px 0px 0px -25px; background-color: #E6E6E6;">
+                    <div class="vertical v2a" style="width:255px; height: 390px; border: 1px solid transparent; background-color: transparent; padding: 65px 0px 73px 0px;">
+                        <div class="horizontal Row1" style="border: 1px solid transparent; width:30%;height:35%; margin: 0 auto;top:5px; padding:0px; position:relative;">
+                            <div class="imgWrapper" style="border: 1px solid transparent;float:left;margin:2px 0px 0px 0px;">
+                                <img class="imgSixClass" id="MAXLite1_img" src="/images/icon_ML-1_on.png" width="105px" height="110px" style="padding:5px; border:0;" />
+                            </div>
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXAir_img" src="/images/icon_MA_off.png" width="100px" height="95px" style="margin:8px 0px 0px -9px;border:0; " />
+                            </div>
+                        </div>
+                        <div class="horizontal Row2" style="border: 1px solid transparent; width:30%;height:35%; margin: 0 auto;top:5px; padding:5px; position:relative;">
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXLite2_img" src="/images/icon_ML-2_off.png" width="105px" height="110px" style="padding:5px; margin-top:1px;" />
+                            </div>
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXScene_img" src="/images/icon_MS_off.png" width="100px" height="95px" style="margin:4px 0px 0px -9px;border:0; " />
+                            </div>
+                        </div>
+                        <div class="horizontal Row2" style="border: 1px solid transparent; width:30%;height:35%; margin: 0 auto;top:5px; position:relative;">
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXLite3_img" src="/images/icon_ML-3_off.png" width="105px" height="110px" style="padding:5px;" />
+                            </div>
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXBook_img" src="/images/icon_MB_off.png" width="100px" height="95px" style="margin:9px 0px 0px -9px;" />
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <div class="vertical v2b" style="width:298px; padding:2px; border: 1px solid transparent;background-color: #E6E6E6; vertical-align: top;">
+                        <div class="horizontal carouselAir1" style="border: 1px solid transparent;">
+                            <div class="vertical carouselAirV1" style="border: 1px solid transparent;width:245px;height:220px;padding:0px; margin:0px 60px 0px 0px;">
+                                <img class="" id="MAXLite1_Carousel_img" src="/images/icon_ML-1_on.png" style="margin:0 auto;" width="275px" height="275px" style="margin:0px 0px 0px 0px;" />
+                            </div>
+                        </div>
+
+                        <div class="horizontal carouselAir2" style="width:259px;height:80px;text-align:left;border: 1px solid transparent;margin:-19px 30px 0px 0px;">
+                            <div class="vertical carouselAirV1" style="width:30px; border: 1px solid transparent;margin:0 auto;padding:0px 0px 0px 0px;">
+                                <img class="" id="MAXAir_Carousel1_img" src="/images/icon_change_left.png" width="25px" height="25px" style="margin:-55px 0px 0px 0px;" />
+                            </div>
+                            <div class="vertical carouselAirV2" style="width:150px; border: 1px solid transparent; margin:0px 0px 0px 0px;text-align:center;">
+                                <div class="horizontal carouselh22" style="width:120px;height:60px;text-align:center;border: 1px solid transparent;margin:-23px 0px 0px 0px;">
+                                    <span style="border: 1px solid transparent; font-size:22px;margin:0px auto;white-space:nowrap;">
+                                        MAXLite M'L 1
+                                    </span>
+                                </div>
+                                <div class="horizontal carouselh23" style="width:120px;height:90px;text-align:center;border: 1px solid transparent;margin:-8px 0px 0px 0px;">
+                                    <span style="border: 1px solid transparent; font-size:18px;margin:0px auto; white-space:nowrap;">Master Bedroom</span>
+                                </div>
+                            </div>
+                            <div class="vertical carouselAirV3" style="width:30px; border: 1px solid transparent; margin:0 auto; padding: 0px 0px 0px 0px;">
+                                <img class="" id="MAXAir_Carousel1_img" src="/images/icon_change_right.png" width="25px" height="25px" style="margin:-55px 0px 0px 0px;" />
+                            </div>
+                        </div>
+                        <div class="horizontal carouselAir3" style="width:150px; border: 1px solid transparent; text-align:center; margin:0px 0px 0px 52px;">
+                            <div style="margin:0 auto;">
+                                <span id="CurrentDeviceIndx">1</span>/<span id="TotoalDeviceCount">1</span>
+                            </div>
+                        </div>
+                        <div class="horizontal carouselAir4" style="width:150px; border: 1px solid transparent;text-align:center; margin:20px 0px 0px 52px;">
+                            <div style="margin:0 auto; width:100px; height:35px; font-size: 9px;">
+                                <button id="DeviceListBtn">Device List</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="vertical v2b" style="width:20px; height: 100%; padding:2px; border: 1px solid transparent;background-color: #E6E6E6; margin: 0 auto; ">
+                        <div id="MAXLite1DeviceListSlider-vertical" style="height:250px; width:3px;vertical-align:bottom;top:30px;"></div>
+                    </div>
+                </div>
+                <div class="horizontal div3" style="border-right: 1px solid black; height:20px;">
+                    &nbsp;&nbsp;
+                </div>
+                <div class="horizontal div7" style="border-right: 1px solid black; height:20px;">
+                    &nbsp;&nbsp;
+                </div>
+                <div class="horizontal div7" style="border-right: 1px solid black; height:20px;">
+                    &nbsp;&nbsp;
+                </div>
+                <div class="horizontal div7" style="border-right: 1px solid black; height:18px;">
+                    &nbsp;&nbsp;
+                </div>
+                <div class="horizontal div3" style="border-right: 1px solid black; height:40px;">
+                    &nbsp;&nbsp;
+                </div>
+                <div class="horizontal div6" style="border-right: 1px solid black;">
+                    <img class="" id="Floorplan_img" src="/images/RexliteLogo.png" width="390px" height="114px" style="padding:5px;left:5px;" />
+                </div>
+                <div class="horizontal div7" style="border-right: 1px solid black; height:60px;">
+                    &nbsp;&nbsp;
+                </div>
+
+            </div>
+            <div class="vertical v2" style="width:50%;height:550px; border: 1px solid transparent; margin: 200px 0px 0px -30px ;background-color: transparent;">
+                <div class="vertical" style="border: 1px solid transparent; margin: 0, auto;background-color: transparent; width: 500px;height: 260px;">
+                    <div class="horizontal subdiv1" style="border: 1px solid transparent;width:530px;height:280px; margin: 0px 0px 0px 0px;">
+                        <div id="MAXLite2Bar1OnOffButton" class="vertical" style="font-size: 26px; font-weight: bold; color:#AD8C41; margin: -25px 0px 0px 0px;">
+                            &nbsp;&nbsp;CH1
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: -10px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_DIM.png" width="95" height="95" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -18px 0px 0px 18px; padding: 0px; width:50px;">Brightness</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:10px;">
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: 0px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_SleepTimer.png" width="70" height="70" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -9px 0px 0px 1px; padding: 0px; width:50px;white-space: nowrap;">Sleep Setting</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:10px;">
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: -10px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_CT.png" width="95" height="95" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -18px 0px 0px 18px; padding: 0px; width:50px;white-space: nowrap;">CT Setting</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:30px;">
+                            &nbsp;
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:30px;">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent; width: 60px; height:1px; padding: 0px 0px 0px 125px;">
+                        <br />
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent; width: 60px; height:70px;  margin: 0 auto; ">
+                        <div class="vertical" style="border: 1px solid transparent; margin:0px 0px 0px 50px;">
+                            <div id="MAXLite2Slider1" style="width:240px;">
+                            </div>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:1px;">
+                            &nbsp;
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:250px;">
+                            &nbsp;&nbsp;<span style="font-weight:bold;border-bottom: 1px solid black;margin: -40px 0px 0px 0px;white-space:nowrap;"> &nbsp;&nbsp;ON / OFF</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:160px;">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent;  width:430px; height:10px;">
+                        <div class="vertical" style="border: 1px solid transparent; width:20px; margin: -40px 0px 0px -100px;">
+                            <span style="font-weight:bold; font-size: 12px;">OFF</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; width:20px; margin: -40px 0px 0px 190px; ">
+                            <span style="font-weight:bold; font-size: 12px;">ON</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:50px;">
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border-bottom: 5px dotted black;  width:500px; height:10px; margin:20px 0px 0px 0px;">
+                    </div>
+                </div>
+                <!--Second Channel -->
+                <div class="vertical" style="visibility: hidden;border: 1px solid transparent; margin: 0, auto;background-color: transparent; width: 500px;height: 260px;">
+                    <div class="horizontal subdiv1" style="border: 1px solid transparent;width:530px;height:280px; margin: 0px 0px 0px 0px;">
+                        <div id="MAXLite2Bar1OnOffButton" class="vertical" style="font-size: 26px; font-weight: bold; color:#AD8C41; margin: -25px 0px 0px 0px;">
+                            &nbsp;&nbsp;CH2
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: -10px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_DIM.png" width="95" height="95" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -18px 0px 0px 18px; padding: 0px; width:50px;">Brightness</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:10px;">
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: 0px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_SleepTimer.png" width="70" height="70" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -9px 0px 0px 1px; padding: 0px; width:50px;white-space: nowrap;">Sleep Setting</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:10px;">
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: -10px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_CT.png" width="95" height="95" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -18px 0px 0px 18px; padding: 0px; width:50px;white-space: nowrap;">CT Setting</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:30px;">
+                            &nbsp;
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:30px;">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent; width: 60px; height:1px; padding: 0px 0px 0px 125px;">
+                        <br />
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent; width: 60px; height:70px;  margin: 0 auto; ">
+                        <div class="vertical" style="border: 1px solid transparent; margin:0px 0px 0px 50px;">
+                            <div id="MAXLite2Slider2" style="width:240px;">
+                            </div>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:1px;">
+                            &nbsp;
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:250px;">
+                            &nbsp;&nbsp;<span style="font-weight:bold;border-bottom: 1px solid black;margin: -40px 0px 0px 0px;white-space:nowrap;"> &nbsp;&nbsp;ON / OFF</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:160px;">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent;  width:430px; height:10px;">
+                        <div class="vertical" style="border: 1px solid transparent; width:20px; margin: -40px 0px 0px -100px;">
+                            <span style="font-weight:bold; font-size: 12px;">OFF</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; width:20px; margin: -40px 0px 0px 190px; ">
+                            <span style="font-weight:bold; font-size: 12px;">ON</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:50px;">
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border-bottom: 5px dotted black;  width:500px; height:10px; margin:20px 0px 0px 0px;">
+                    </div>
+                </div>
+                <!--End of Second Channel-->
+                <!--Third Channel-->
+                <div class="vertical" style="visibility: hidden; border: 1px solid transparent; margin: 0, auto;background-color: transparent; width: 500px;height: 260px;">
+                    <div class="horizontal subdiv1" style="border: 1px solid transparent;width:530px;height:280px; margin: 0px 0px 0px 0px;">
+                        <div id="MAXLite2Bar1OnOffButton" class="vertical" style="font-size: 26px; font-weight: bold; color:#AD8C41; margin: 0px 0px 0px 0px;">
+                            &nbsp;&nbsp;CH3
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: -10px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_DIM.png" width="95" height="95" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -18px 0px 0px 18px; padding: 0px; width:50px;">Brightness</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:10px;">
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: 0px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_SleepTimer.png" width="70" height="70" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -9px 0px 0px 1px; padding: 0px; width:50px;white-space: nowrap;">Sleep Setting</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:10px;">
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; height: 95px; width:95px; padding: 0px;font-size: 12px;margin: -10px 0px 0px 0px;">
+                            &nbsp; <img id="MAXLite2Slider1OnOff_Img" src="/images/icon_ML_CT.png" width="95" height="95" style="border: 1px solid transparent; margin: -42px 0px 0px 5px; padding: 0px;" />
+                            <br /><span style="font-weight:bold;margin: -18px 0px 0px 18px; padding: 0px; width:50px;white-space: nowrap;">CT Setting</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:30px;">
+                            &nbsp;
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  width:30px;">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent; width: 60px; height:1px; padding: 0px 0px 0px 125px;">
+                        <br />
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent; width: 60px; height:70px;  margin: 0 auto; ">
+
+                        <div class="vertical" style="border: 1px solid transparent; margin:0px 0px 0px 50px;">
+                            <div id="MAXLite2Slider3" style="width:240px;">
+                            </div>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:1px;">
+                            &nbsp;
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:250px;">
+                            &nbsp;&nbsp;<span style="font-weight:bold;border-bottom: 1px solid black;margin: -40px 0px 0px 0px;white-space:nowrap;"> &nbsp;&nbsp;ON / OFF</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:160px;">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border: 1px solid transparent;  width:430px; height:10px;">
+                        <div class="vertical" style="border: 1px solid transparent; width:20px; margin: -40px 0px 0px -100px;">
+                            <span style="font-weight:bold; font-size: 12px;">OFF</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent; width:20px; margin: -40px 0px 0px 190px; ">
+                            <span style="font-weight:bold; font-size: 12px;">ON</span>
+                        </div>
+                        <div class="vertical" style="border: 1px solid transparent;  margin: 0, auto; width:50px;">
+                        </div>
+                    </div>
+                    <div class="horizontal currAirSelectionDiv" style="border-bottom: 5px dotted black;  width:500px; height:10px; margin:20px 0px 0px 0px;">
+                    </div>
+                </div>
+                <!--End of Third Channel-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //var getSelectedMAXLite1BleID = @Html.Raw(Json.Encode(ViewBag.MAXLite1SelectedBleID));
+        //var getSelectedMAXLite1BleSN = @Html.Raw(Json.Encode(ViewBag.MAXLite1SelectedBleSN));
+        //console.log("getSelectedMAXLite1BleID = " + getSelectedMAXLite1BleID);
+        //console.log("getSelectedMAXLite1BleSN = " + getSelectedMAXLite1BleSN);
+
+        var getSelectedMAXLite1BleID = $('#getSelectedMAXLite1BleID').val();
+        var getSelectedMAXLite1BleSN = $('#getSelectedMAXLite1BleSN').val();
+        console.log("getSelectedMAXLite1BleID =" + getSelectedMAXLite1BleID);
+        console.log("getSelectedMAXLite1BleSN =" + getSelectedMAXLite1BleSN);
+
+        var loginUserName = $('#loginUserName').val();
+        console.log("loginUserName = " + loginUserName);
+        $('#showUserIDMenuTop').text(loginUserName + " ");
+        $('.popr').popr();
+        $("#backBtn").click(function () {
+            window.history.back();
+        });
+
+        var currentController = "MAXLite1DeviceKeyPanel";
+        var DeviceONOffMethod = "SelectedMAXLite1DeviceKey";
+        var formatMaxlite1DeviceOptionCmdMethod = "FormatMAXLite1DeviceKeyOptionCallCmd";
+        var DeviceKeyOptionMethod = "MakeSelectedMAXLite1DeviceKeyOptionCall";
+
+        var CurrentMAXLite1CmdToSend = "";
+        var CurrentOptionSelected = "";
+
+        function initOnOffButtonsCheck()
+        {
+            var getBar1Value = $("#MaxLiteBar1Progress").val();
+        }
+
+        $("#MAXLite1Bar1OnButton").click(function () {  //On Key
+            var strTestKey1 = "14060000000000891905A200009842";      //(89) 一切第一鍵
+            //alert("MAXLite1Bar1OnButton .click() called. Key1-3");
+            var selectedKeyNum = "1";
+            makeMAXLite1DeviceSelectedKeyAjaxCall(currentController, DeviceONOffMethod, strTestKey1, selectedKeyNum);
+
+            //initMAXLite3Cmd = getMaxliteDeviceBTCmdAjaxCall(currentController, BTMethod, getDeviceBleID, getDeviceBleSN, selectedKeyNum);
+            //console.log("initMAXLite1Cmd =" + initMAXLite1Cmd);
+        });
+
+        $("#MAXLite1Bar1OffButton").click(function () {
+            var strTestKey2 = "14060000000000891905A30000C982";      //(89) 一切第二鍵
+            //alert("MAXLite1Bar1OffButton .click() called. Key2-4");
+            var selectedKeyNum = "2";
+            makeMAXLite1DeviceSelectedKeyAjaxCall(currentController, DeviceONOffMethod, strTestKey2, selectedKeyNum);
+        });
+
+        $("#MAXLite1Bar1BTutton").click(function () {  //開始調整單切開關ch1亮度 (89)
+            alert("MAXLite1 BT Button clicked! ");
+            var strlightBT = "14060000000000891905AA03";
+            CurrentOptionSelected = "BT";
+            var selectedBarNum = "1";  //Need to make a ajax call to format the correct Maxlite1 cmd for BT call and return cmd
+            //formatMAXLite1DeviceSelectedKeyOptionCmdAjaxCall(currentController, DeviceKeyOptionMethod, strlightBT, selectedKeyNum, "BT")
+            formatMAXLite1DeviceSelectedKeyOptionCmdAjaxCall(currentController, formatMaxlite1DeviceOptionCmdMethod, strlightBT, selectedBarNum, CurrentOptionSelected);
+
+        });
+
+        $("#MAXLite1Bar1CTButton").click(function () {  //開始調整單切開關ch1色溫 (89)
+            //alert("MAXLite1Bar1CTButton .click() called. Color Temperature adjustment! ");
+            alert("MAXLite1 CT Button clicked! ");
+            CurrentOptionSelected = "CT";
+        });
+        var sliderTimer;
+
+        $("#MAXLite1Slider1").slider({
+            range: "min",
+            value: 0,
+            min: 0,
+            max: 51,
+            step: 1,
+            slide: function (event, ui) {
+
+               // $("#MaxLiteBar1Progress").val(ui.value + "%");
+                //var initMaxlite1OptionCmd = $("#formatInitMaxlite1OptionCallCmd").val();
+                var initMaxlite1OptionCmd = $("#formatInitMaxlite1OptionCallCmd").val();
+                if (!initMaxlite1OptionCmd)
+                {
+                    alert("Please select and click Brightness or CT Setting button first!");
+                    ui.value = 0;
+                    //$("#MAXLite1Slider1").val(0).slider("refresh");
+                    //$("#MAXLite1Slider1").slider("values", 0, options.values[0]);
+                    $("#MaxLiteBar1Progress").val("");
+                }
+                else
+                {
+                    initMaxlite1OptionCmd = initMaxlite1OptionCmd.toString().replace("\"", "");
+                    console.log("initMaxlite1OptionCmd 1= " + initMaxlite1OptionCmd);
+                    initMaxlite1OptionCmd = initMaxlite1OptionCmd.replace("\"", "");
+                    console.log("initMaxlite1OptionCmd 2 = " + initMaxlite1OptionCmd);
+
+                    var uiValToHex = ui.value.toString(16);
+                    console.log(" uiValToHex.Length 001 = " + uiValToHex.toString().length);
+                    var getCurrUIValLen = uiValToHex.toString().length;
+                    console.log(" uiValToHexStr.Length 002= " + getCurrUIValLen);
+
+                    var uiValToHexStr = "";
+                    if (getCurrUIValLen == 1) {
+                        console.log("uiValToHex test 01= " + uiValToHex);
+                        uiValToHexStr = "0" + uiValToHex.toString().toUpperCase();
+                    }
+                    else {
+                        uiValToHexStr = uiValToHex.toString().toUpperCase();
+                    }
+                    console.log("uiValToHexStr 003= " + uiValToHexStr);
+                    //$("#MAXLite1Bar1HexText").val(uiValToHexStr);  //"Hex:" +
+                    //var controller = "";
+                    //var sliderBarValClientCallMethod = "MakeMAXLite1DeviceBTClientCall";
+                    var selectedBar = 1;
+                    //var formatBTcmdToSend = $('#hidSelectedMAXLite1DeviceCmd').val();
+                    //formatBTcmdToSend = formatBTcmdToSend + uiValToHex;
+                    //console.log("formatBTcmdToSend = " + formatBTcmdToSend);
+
+                    var newCmdToSend = initMaxlite1OptionCmd + uiValToHexStr;
+                    console.log("newCmdToSend = " + newCmdToSend);
+
+
+                    //makeMAXLite1DeviceSelectedSliderOptionCmdAjaxCall(currentController, DeviceKeyOptionMethod, newCmdToSend, selectedBar, CurrentOptionSelected)
+                    sliderTimer = setInterval(makeMAXLite1DeviceSelectedSliderOptionCmdAjaxCall(currentController, DeviceKeyOptionMethod, newCmdToSend, selectedBar, CurrentOptionSelected), 500);
+
+                }
+
+                if (ui.value <= 1) {
+                    $("#MaxLiteBar1OnButton").css('color', '#262626');
+                    $("#MaxLiteBar1OffButton").css('color', '#262626');
+                }
+                else {
+                    $("#MaxLiteBar1OnButton").css('color', '#AD8C42');
+                    $("#MaxLiteBar1OffButton").css('color', '#AD8C42');
+                }
+            },
+            stop: function () {
+
+                console.log("stop sliding!!! ");
+                //clearInterval(sliderTimer);     //clearInterval(t);
+            }
+        });
+
+        $("#MAXLite1Slider2").slider({ disabled: true });
+        $("#MAXLite1Slider3").slider({ disabled: true });
+
+
+        $("#DeviceListBtn").click(function () {
+            var url = '@Url.Action("Index", "MAXLite1DeviceList")';
+            location.href = url;
+         });
+
+        $("#MAXLite1_img").click(function () {
+            var url = '@Url.Action("Index", "MAXLite1DeviceList")';
+            location.href = url;
+         });
+
+        $("#MAXLite2_img").click(function () {
+            var url = '@Url.Action("Index", "MAXLite2DeviceList")';
+            location.href = url;
+        });
+
+
+        $("#MAXLite3_img").click(function () {
+            var url = '@Url.Action("Index", "MAXLite3DeviceList")';
+            location.href = url;
+        });
+
+        $("#MAXAir_img").click(function () {
+            var url = '@Url.Action("Index", "MAXAirDeviceList")';
+            location.href = url;
+        });
+
+        $("#MAXScene_img").click(function () {
+            var url = '@Url.Action("Index", "MAXSceneDeviceList")';
+            location.href = url;
+        });
+
+        $("#MAXBook_img").click(function () {
+            var url = '@Url.Action("Index", "MAXBookDeviceList")';
+            location.href = url;
+        });
+
+        function formatMAXLite1DeviceSelectedKeyOptionCmdAjaxCall(controller, method, cmdToSend, selectedBarNum, optionSelected)
+        {
+            var methodUri = "/" + controller + "/" + method;
+            var formatBTCmd = "";
+
+            console.log("key uri methodUri = " + methodUri);
+            console.log("key cmdToSend + selectedBarNum = " + cmdToSend + " - " + selectedBarNum + " - " + optionSelected);
+            //console.log("2 cmdToSend= " + cmdToSend);
+
+            $.ajax({
+                type: "GET",
+                url: methodUri,
+                data: {
+                    'BleDeviceCmdStr': cmdToSend, 'BleID': getSelectedMAXLite1BleID, 'BleSN': getSelectedMAXLite1BleSN,
+                    'BarSelected': selectedBarNum, 'OptionSelection': optionSelected
+                },
+                dataType: "html",
+                cache: false,
+                success: function (response, status, xhr) {
+                    //alert(response);
+                    $("#formatInitMaxlite1OptionCallCmd").val(response);
+                },
+                error: function (xhr, status, error) {
+                    //alert(controller + " update status error: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                    //$("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                }
+            });
+            return formatBTCmd;
+        }
+
+        //makeMAXLite1DeviceSelectedSliderOptionCmdAjaxCall(currentController, DeviceKeyOptionMethod, newCmdToSend, selectedBar, CurrentOptionSelected)
+        function makeMAXLite1DeviceSelectedSliderOptionCmdAjaxCall(controller, method, newCmdToSend, selectedBarNum, optionSelected) {
+            var methodUri = "/" + controller + "/" + method;
+            console.log("==================================================== starting makeMAXLite1DeviceSelectedSliderOptionCmdAjaxCall .......... ");
+            console.log("option1 uri methodUri = " + methodUri);
+            console.log("newCmdToSend = " + newCmdToSend);
+            console.log("option1  optionSelected + selectedBarNum = " + optionSelected + " -- " + selectedBarNum);
+            if (!optionSelected)
+            {
+                optionSelected = $("#CurrentSliderOptionSelection").val();
+                console.log("option2  optionSelected = " + optionSelected);
+            }
+
+            //MakeSelectedMAXLite1DeviceKeyOptionCall(string BleDeviceCmdStr, string SelectedBar, int BTValue, string OptionSelection)
+            $.ajax({
+                type: "POST",
+                url: methodUri,
+                data: { 'BleDeviceCmdStr': newCmdToSend, 'SelectedBar': selectedBarNum, 'OptionSelection': optionSelected },
+                dataType: "html",
+                cache: false,
+                success: function (result, status, xhr) {
+                },
+                error: function (xhr, status, error) {
+                    //alert(controller + " update status error: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                    //$("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                }
+            });
+
+
+        }
+
+        var delay = (function () {
+            var timer = 0;
+            return function (callback, ms) {
+                clearTimeout(timer);
+                timer = setTimeout(callback, ms);
+            };
+        })();
+
+        function makeMAXLite1DeviceSelectedKeyAjaxCall(controller, method, cmdToSend, selectedKeyNum) {
+            var methodUri = "/" + controller + "/" + method;
+            var formatBTCmd = "";
+
+            console.log("key uri methodUri = " + methodUri);
+            console.log("key cmdToSend + selectedKeyNum = " + cmdToSend + " - " + selectedKeyNum);
+            //console.log("2 cmdToSend= " + cmdToSend);
+
+            $.ajax({
+                type: "POST",
+                url: methodUri,
+                data: {
+                    'BleDeviceCmdStr': cmdToSend, 'BleID': getSelectedMAXLite1BleID, 'BleSN': getSelectedMAXLite1BleSN, 'KeySelected': selectedKeyNum},
+                dataType: "html",
+                cache: false,
+                success: function (result, status, xhr) {
+
+                },
+                error: function (xhr, status, error) {
+                    //alert(controller + " update status error: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                    //$("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                }
+            });
+        }
+    });
+</script>
