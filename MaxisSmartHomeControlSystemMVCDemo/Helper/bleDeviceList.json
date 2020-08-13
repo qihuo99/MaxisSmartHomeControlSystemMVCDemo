@@ -1,0 +1,32 @@
+[
+  {
+    "BleID": "0A",
+    "BleSN": "000000000001",
+    "BleName": "MAXBook"
+  },
+  {
+    "BleID": "0B",
+    "BleSN": "000000000051",
+    "BleName": "MAXScene"
+  },
+  {
+    "BleID": "16",
+    "BleSN": "000000000032",
+    "BleName": "MAXLite M’L - 2"
+  },
+  {
+    "BleID": "14",
+    "BleSN": "000000000089",
+    "BleName": "MAXLite M’L - 1"
+  },
+  {
+    "BleID": "18",
+    "BleSN": "000000000009",
+    "BleName": "MAXLite M’L - 3"
+  },
+  {
+    "BleID": "13",
+    "BleSN": "000000000001",
+    "BleName": "MAXAir"
+  }
+]

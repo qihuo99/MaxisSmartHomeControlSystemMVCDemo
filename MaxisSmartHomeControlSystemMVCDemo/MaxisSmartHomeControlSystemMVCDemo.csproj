@@ -248,6 +248,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ClassTypeDeclarations.cs" />
+    <Compile Include="Helper\ExtensionMethods.cs" />
+    <Compile Include="Helper\ProcessJsonFunctions.cs" />
+    <Compile Include="Helper\RexliteDBFunctions.cs" />
+    <Compile Include="Helper\TCPIPClientCallFunctions.cs" />
     <Compile Include="Models\ADSLSetting.cs">
       <DependentUpon>RexliteDBModel.tt</DependentUpon>
     </Compile>
@@ -370,6 +375,7 @@
     <Content Include="Models\RexliteDBModel.edmx.diagram">
       <DependentUpon>RexliteDBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Helper\bleDeviceList.json" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
