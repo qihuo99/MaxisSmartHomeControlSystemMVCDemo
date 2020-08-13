@@ -80,9 +80,9 @@ namespace MaxisSmartHomeControlSystemMVCDemo.Controllers
 
                             userTable.UserName = userModel.UserName;
                             userTable.UserPassword = userModel.UserPassword;
-                            //userTable.ConfirmPassword = userModel.UserPassword;
+                            userTable.ConfirmPassword = userModel.UserPassword;
                             userTable.UserEmailAddress = userModel.UserEmailAddress;
-                            userTable.UserMobilePhoneNumber = userModel.UserMobilePhoneNumber;
+                            userTable.UserMobilePhoneNumber =              userModel.UserMobilePhoneNumber;
                             //userTable.UserRoleAssigned = Convert.ToInt32(UserRoleSelect);
                             userTable.CreateDate = DateTime.Now;
 

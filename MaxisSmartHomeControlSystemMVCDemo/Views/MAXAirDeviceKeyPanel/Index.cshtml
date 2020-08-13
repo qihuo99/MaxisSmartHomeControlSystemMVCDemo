@@ -1,0 +1,571 @@
+﻿@{
+    ViewBag.Title = "Index";
+
+    if (Session["userName"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+}
+
+<style>
+    html {
+        height: 80%;
+    }
+
+    body {
+        background-color: transparent;
+    }
+
+    div.vertical {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .subTitleDiv {
+        display: block;
+        margin: 0 auto;
+        color: #AD8C41;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .MaxLiteOnOffButton {
+        display: block;
+        margin: 0 auto;
+        color: #AD8C42;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .bottomDiv { /* this css will ensure the div stays on the bottom of page all the time */
+        background-color: transparent;
+        height: 20px;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 5px;
+    }
+    /* ----------------------------------------------------------*/
+    .ui-widget-content {
+        border: 0px solid #ccc;
+        background: #262626
+    }
+
+    .ui-widget-header {
+        border: 0px solid #aaaaaa;
+        background: #AD8C42
+    }
+
+    .ui-slider {
+        position: relative;
+        text-align: left;
+    }
+
+        .ui-slider .ui-slider-handle {
+            height: 5px;
+            width: 5px;
+            position: absolute;
+            z-index: 2;
+            width: 1.2em;
+            height: 1.2em;
+            cursor: default;
+        }
+
+        .ui-slider .ui-slider-range {
+            position: absolute;
+            z-index: 1;
+            font-size: .7em;
+            display: block;
+            border: 0;
+            background-position: 10 10;
+        }
+
+    .ui-slider-horizontal {
+        height: .2em;
+        width: 300px;
+    }
+
+        .ui-slider-horizontal .ui-slider-handle {
+            top: -0.3em;
+            margin-left: -.6em;
+            width: 30px;
+            height: 8px;
+            border: 0;
+            background: black;
+        }
+
+        .ui-slider-horizontal .ui-slider-range {
+            top: 0;
+            height: 100%;
+        }
+
+        .ui-slider-horizontal .ui-slider-range-min {
+            left: 0;
+        }
+
+        .ui-slider-horizontal .ui-slider-range-max {
+            right: 70px;
+        }
+
+    .ui-slider-vertical {
+        height: 300em;
+        width: 1px;
+    }
+
+        .ui-slider-vertical .ui-slider-handle {
+            top: -0.1em;
+            margin-left: 0.1em;
+            width: 6px;
+            height: 30px;
+            border: 0;
+            background: black;
+        }
+
+        .ui-slider-vertical .ui-slider-range {
+            top: 0;
+            height: 1px;
+            width: 80px;
+        }
+
+        .ui-slider-vertical .ui-slider-range-min {
+            left: 0px;
+        }
+
+        .ui-slider-vertical .ui-slider-range-max {
+            right: 0px;
+        }
+
+    hr {
+        border-top: 1px solid #999999;
+    }
+
+    .ValidateTips {
+        color: red;
+    }
+
+    #MAXAirSlider1 {
+        background: transparent;
+    }
+
+        #MAXAirSlider1 .tic {
+            border-right: 1px solid #ccc;
+            color: red;
+            width: 20%;
+            height: 100%;
+            display: inline-block;
+            z-index: 1000;
+        }
+
+    .slide-labels {
+        font-size: 11px;
+        color: red;
+        position: relative;
+        margin-bottom: 2px;
+    }
+
+        .slide-labels .label {
+            color: red;
+            margin-top: -5px;
+        }
+
+            .slide-labels .label.first {
+                color: blueviolet;
+            }
+
+            .slide-labels .label.last {
+                float: right;
+                color: blueviolet;
+            }
+</style>
+
+<div id="MAXDeviceTop" class="MAXDeviceTopDiv" style="background-color: #ccc;">
+    <div style="padding: 10px 0px 0px 0px; margin: -20px 0px 0px 0px; float:left;">
+        <img id="backBtn" src="/images/icon_back.png" width="200px" height="100px">
+    </div>
+    <div class="inner" style="padding: 0px; float:right; color:#000000;">
+        <div class="popr" data-id="1">
+            <span class="dot" style="margin: 14px 27px 0px 0px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/icon_defaultIcon.png" style="display:none; padding: 5px; margin: -12px 0px 0px 13px; float:left; z-index: 100;" width="58px" height="58px">
+            </span>
+        </div>
+    </div>
+    <div class="showUserDataDiv" style=""><p class="showUserDataMsg">Welcome!&nbsp;<span id="showUserIDMenuTop"></span>&nbsp;&nbsp;</p>&nbsp;&nbsp;</div>
+    <div id="SubDiv" class="">
+        <div class="popr-box" data-box-id="1" style="margin: 0px 100px 0px 0px;">
+            <a href="@Url.Action("Logout", "Login")" class=""><div class="popr-item">登出</div></a>
+            <a href="@Url.Action("Index", "Home")" class=""><div class="popr-item">回到主頁</div></a>
+            <a href="javascript:displayDeviceIDSN();" id="MAXLite1DisplayID"><div class="popr-item" id="feugait">顯示設備ID</div></a>
+            <a href="DeviceSystemStatusSettings.html"><div class="popr-item">顯示系統狀態</div></a>
+            <a href="@Url.Action("ResetUserPassword", "Home")"><div class="popr-item">重設密碼</div></a>
+            <a href="@Url.Action("Index", "PermissionSettings")"><div class="popr-item">權限設置</div></a>
+        </div>
+    </div>
+</div>
+
+<div class="mainDevListContent" style="margin: 0px, 0px, 0px, 0px; ">
+    <div class="deviceContent">
+        <div class="horizontal div1" style="border: 1px solid transparent; margin: 0px 2px 0px 0px;">
+            <div class="vertical v1" style="padding: 2px; border: 1px solid transparent; margin: 0, auto;background-color: transparent;">
+                <div class="horizontal div2" style="border-bottom: 1px solid black;border-right: 1px solid black; margin: 72px 0px 0px -5px; background-color: #E6E6E6;">
+                    <div class="vertical v2a" style="width:255px; height: 390px; border: 1px solid transparent; background-color: transparent; padding: 65px 0px 73px 0px;">
+                        <div class="horizontal Row1" style="border: 1px solid transparent; width:30%;height:35%; margin: 0 auto;top:5px; padding:0px; position:relative;">
+                            <div class="imgWrapper" style="border: 1px solid transparent;float:left;margin:2px 0px 0px 0px;">
+                                <img class="imgSixClass" id="MAXLite1_img" src="/images/icon_ML-1_off.png" width="105px" height="110px" style="padding:5px; border:0;" />
+                            </div>
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXAir_img" src="/images/icon_MA_on.png" width="100px" height="95px" style="margin:8px 0px 0px -9px;border:0; " />
+                            </div>
+                        </div>
+                        <div class="horizontal Row2" style="border: 1px solid transparent; width:30%;height:35%; margin: 0 auto;top:5px; padding:5px; position:relative;">
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXLite2_img" src="/images/icon_ML-2_off.png" width="105px" height="110px" style="padding:5px; margin-top:1px;" />
+                            </div>
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXScene_img" src="/images/icon_MS_off.png" width="100px" height="95px" style="margin:4px 0px 0px -9px;border:0; " />
+                            </div>
+                        </div>
+                        <div class="horizontal Row2" style="border: 1px solid transparent; width:30%;height:35%; margin: 0 auto;top:5px; position:relative;">
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXLite3_img" src="/images/icon_ML-3_off.png" width="105px" height="110px" style="padding:5px;" />
+                            </div>
+                            <div class="imgWrapper" style="border: 1px solid transparent; position:relative;float:left;">
+                                <img class="imgSixClass" id="MAXBook_img" src="/images/icon_MB_off.png" width="100px" height="95px" style="margin:9px 0px 0px -9px;" />
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                    <br />
+                    <div class="vertical v2b" style="width:298px; padding:2px; border: 1px solid transparent;background-color: #E6E6E6; vertical-align: top;">
+                        <div class="horizontal carouselAir1" style="border: 1px solid transparent;">
+                            <div class="vertical carouselAirV1" style="border: 1px solid transparent;width:245px;height:220px;padding:0px; margin:25px 60px 0px 0px;">
+                                <img class="" id="MAXLite1_Carousel_img" src="/images/icon_MA_on.png" style="margin:0 auto;" width="275px" height="275px" style="margin:0px 0px 0px 0px;" />
+                            </div>
+                        </div>
+                        <div class="horizontal carouselAir2" style="width:259px;height:80px;text-align:left;border: 1px solid transparent;margin:-19px 30px 0px 0px;">
+                            <div class="vertical carouselAirV1" style="width:30px; border: 1px solid transparent;margin:0 auto;padding:0px 0px 0px 0px;">
+                                <img class="" id="MAXAir_Carousel1_img" src="/images/icon_change_left.png" width="25px" height="25px" style="margin:-20px 0px 0px 0px;" />
+                            </div>
+                            <div class="vertical carouselAirV2" style="width:150px; border: 1px solid transparent; margin:0px 0px 0px 0px;text-align:center;">
+                                <div class="horizontal carouselh22" style="width:120px;height:60px;text-align:center;border: 1px solid transparent;margin:-12px 0px 0px 0px;">
+                                    <span style="border: 1px solid transparent; font-size:22px;margin:0px auto;">
+                                        MAXAir 01
+                                    </span>
+                                    <br /> <br />
+                                </div>
+                                <div class="horizontal carouselh23" style="width:120px;height:90px;text-align:center;border: 1px solid transparent;margin:-8px 0px 0px 0px;">
+                                    <span style="border: 1px solid transparent; font-size:18px;margin:0px auto; white-space:nowrap;">Master Bedroom</span>
+                                </div>
+                            </div>
+                            <div class="vertical carouselAirV3" style="width:30px; border: 1px solid transparent; margin:0 auto; padding: 0px 0px 0px 0px;">
+                                <img class="" id="MAXAir_Carousel1_img" src="/images/icon_change_right.png" width="25px" height="25px" style="margin:-20px 0px 0px 0px;" />
+                            </div>
+                        </div>
+                        <div class="horizontal carouselAir3" style="width:150px; border: 1px solid transparent; text-align:center; margin:0px 0px 0px 52px;">
+                            <div style="margin:0 auto;">
+                                <span id="CurrentDeviceIndx">1</span>/<span id="TotoalDeviceCount">1</span>
+                            </div>
+                        </div>
+                        <div class="horizontal carouselAir4" style="width:150px; border: 1px solid transparent;text-align:center; margin:20px 0px 0px 52px;">
+                            <div style="margin:0 auto; width:100px; height:15px; font-size: 9px;">
+                                <button id="DeviceListBtn">Device List</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical v2b" style="width:20px; height: 100%; padding:2px; border: 1px solid transparent;background-color: #E6E6E6; margin: 0 auto; ">
+                        <div id="MAXLite1DeviceListSlider-vertical" style="height:250px; width:3px;vertical-align:bottom;top:30px;"></div>
+                    </div>
+                </div>
+                <div class="horizontal div3" style="border-right: 1px solid black; height:60px;">
+                    &nbsp;&nbsp;
+                </div>
+                <div class="horizontal div6" style="border-right: 1px solid black;">
+                    <img class="" id="Floorplan_img" src="/images/RexliteLogo.png" width="390px" height="123px" style="padding:5px;left:5px;" />
+                </div>
+                <div class="horizontal div7" style="border-right: 1px solid black; height:60px;">
+                    &nbsp;&nbsp;
+                </div>
+            </div>
+            <div class="vertical v2" style="width:570px;height:550px; border: 1px solid transparent; margin: 100px 0px 0px -1px ;background-color: transparent;">
+                <div class="horizontal div7" style="border: 1px solid transparent; height:550px;">
+                    &nbsp;&nbsp;
+                    <div class="vertical v31a" style="width:360px; height: 100%; padding:2px; border: 1px solid transparent; margin: 0 auto; ">
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:110px; white-space: nowrap;text-align:left;">
+                            <br />
+                        </div>
+                        <div class="" style="border: 1px solid transparent; height:50px; white-space: nowrap;text-align:left;">
+                            <p style="font-size: 20px; text-align:left;">Current Temperature</p><br /><br />
+                        </div>
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:60px; white-space: nowrap;text-align:left;">
+                            <br />
+                        </div>
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:80px;border: 1px solid transparent;">
+                            <div class="vertical v320a" style="width:75px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 75px;">28&nbsp;</p>
+                            </div>
+                            <div class="vertical v320b" style="width:50px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <span style="font-size: 35px;font-weight: bold; margin:-30px 0px 0px 0px;border: 1px solid transparent;">&#8451;</span>
+                            </div>
+                            <div class="vertical v320c" style="width:30px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 55px;">|</p>
+                            </div>
+                            <div class="vertical v320c" style="width:75px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 75px;">82&nbsp;</p>
+                            </div>
+                            <div class="vertical v320b" style="width:50px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <span style="font-size: 35px;font-weight: bold; margin:-30px 0px 0px 0px;border: 1px solid transparent;">&#8457;</span>
+                            </div>
+                        </div>
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:110px; white-space: nowrap;text-align:left;">
+                            <br />
+                        </div>
+                        <div class="" style="border: 1px solid transparent; height:50px; white-space: nowrap;text-align:left;">
+                            <p style="font-size: 20px; text-align:left;">Set Temperature</p><br /><br />
+                        </div>
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:60px; white-space: nowrap;text-align:left;">
+                            <br />
+                        </div>
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:80px;border: 1px solid transparent;">
+                            <div class="vertical v320a" style="width:75px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 75px;">32&nbsp;</p>
+                            </div>
+                            <div class="vertical v320b" style="width:50px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <span style="font-size: 35px;font-weight: bold; margin:-30px 0px 0px 0px;border: 1px solid transparent;">&#8451;</span>
+                            </div>
+                            <div class="vertical v320c" style="width:30px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 55px;">|</p>
+                            </div>
+                            <div class="vertical v320c" style="width:75px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 75px;">86&nbsp;</p>
+                            </div>
+                            <div class="vertical v320b" style="width:50px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <span style="font-size: 35px;font-weight: bold; margin:-30px 0px 0px 0px;border: 1px solid transparent;">&#8457;</span>
+                            </div>
+                        </div>
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:110px; white-space: nowrap;text-align:left;">
+                            <br />
+                        </div>
+                        <div class="" style="border: 1px solid transparent; height:50px; white-space: nowrap;text-align:left;">
+                            <span style="font-size: 20px; width: 100px; text-align:left;">Set Time</span>
+                            <span style="width: 100px;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span style="font-size: 20px; width: 300px; text-align:right;">Remaining Time</span>
+                            <br /><br />
+
+                        </div>
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:60px; white-space: nowrap;text-align:left;">
+                            <br />
+                        </div>
+                        <div class="horizontal div7" style="border: 1px solid transparent; height:80px;border: 1px solid transparent;">
+                            <div class="vertical v320a" style="width:110px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 75px; white-space:nowrap;">7.5 &nbsp; </p>
+                            </div>
+                            <div class="vertical v320b" style="width:35px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <span style="font-size: 25px;font-weight: bold; margin:0px 0px 0px 0px;border: 1px solid transparent;"><sub>hrs.</sub></span>
+                            </div>
+                            <div class="vertical v320c" style="width:30px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 55px;">|</p>
+                            </div>
+                            <div class="vertical v320c" style="width:110px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <p style="font-size: 75px;">6.5&nbsp;</p>
+                            </div>
+                            <div class="vertical v320b" style="width:35px; height: 20px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                                <span style="font-size: 25px;font-weight: bold; margin:0px 0px 0px 0px;border: 1px solid transparent;"><sub>hrs.</sub></span>
+                            </div>
+                        </div>
+                        <div class="horizontal div8" style="border: 1px solid transparent; height:60px; white-space: nowrap;text-align:left;">
+                            <br />
+                        </div>
+                        <div class="horizontal div8" style="border: 1px solid transparent; height:60px; white-space: nowrap;text-align:left;">
+                            <div class="vertial" style="border: 1px solid transparent; width: 20px; height:100px;">
+                                &nbsp;
+                            </div>
+                            <div class="vertial" style="border: 1px solid transparent; height:100px; margin:40px 70px 0px 0px; white-space: nowrap;text-align:left; vertical-align: middle;">
+                                <span style="font-size: 20px; width: 100px; text-align:left;">Fan Speed.</span>
+                            </div>
+
+                            <div class="vertial" style="border: 1px solid transparent; height:100px; white-space: nowrap;text-align:left;">
+                                <img class="" id="Floorplan_img" src="/images/icon_MA_FanSpeed.png" width="100px" height="100px" style="padding:0px;" />
+                            </div>
+                            <div class="vertial" style="border: 1px solid transparent; width:200px; height:100px;">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical v31b" style="width:100px; height: 610px; padding:0px; border: 1px solid transparent; margin: 0 auto; ">
+                        <br />
+                        <img class="" id="MACool_img" src="/images/icon_MA_AirConditioner.png" width="80px" height="80px" style="" />
+                        <br />
+                        <img class="" id="MAHeat_img" src="/images/icon_MA_heat.png" width="80px" height="80px" style="" />
+                        <br />
+                        <img class="" id="MAFan_img" src="/images/icon_MA_Fan.png" width="80px" height="80px" style="" />
+                        <br />
+                        <img class="" id="MADehumidifier_img" src="/images/icon_MA_Dehumidifier.png" width="80px" height="80px" style="" />
+                        <br />
+                        <img class="" id="MASleepTimer_img" src="/images/icon_MA_SleepTimer.png" width="80px" height="80px" style="" />
+                        <br />
+                        <img class="" id="MAExchangeAir_img" src="/images/icon_MA_ExchangeAir.png" width="80px" height="80px" style="" />
+                    </div>
+                </div>
+                <div class="horizontal div8" style="border: 1px solid transparent; height:30px;">
+                    <br />
+                </div>
+                <div class="horizontal div8" style="border: 1px solid transparent; height:120px;">
+                    <br />
+                </div>
+                <div class="horizontal div1" style="height:40px; border: 1px solid transparent; margin: 30px 0px 0px 0px;">
+                    <div class="vertical" style="border: 1px solid transparent; margin:0 auto;">
+
+                        <div class="slide-labels">
+                            <div class="label pos-0 first">
+                                $0
+                            </div>
+                            <div class="label pos-1">
+                                $1,000
+                            </div>
+                            <div class="label pos-2">
+                                $10,000
+                            </div>
+                            <div class="label pos-3">
+                                $20,000
+                            </div>
+                            <div class="label pos-4">
+                                $30,000
+                            </div>
+                            <div class="label pos-5 last">
+                                $50,000
+                            </div>
+                        </div>
+                        <div id="MAXAirSlider1" style="width:450px;">
+                            <div class="tic pos-1">
+                            </div>
+                            <div class="tic pos-2">
+                            </div>
+                            <div class="tic pos-3">
+                            </div>
+                            <div class="tic pos-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var myValues = [
+            1000,
+            10000,
+            20000,
+            30000,
+            50000
+        ];
+        var loginUserName = $('#loginUserName').val();
+        console.log("loginUserName = " + loginUserName);
+        $('#showUserIDMenuTop').text(loginUserName + " ");
+        $('.popr').popr();
+        $("#backBtn").click(function () {
+            window.history.back();
+        });
+
+        $("#DeviceListBtn").click(function () {
+            var url = '@Url.Action("Index", "MAXAirDeviceList")';
+            location.href = url;
+         });
+
+        $("#MAXLite1_img").click(function () {
+            var url = '@Url.Action("Index", "MAXLite1DeviceList")';
+            location.href = url;
+         });
+
+        $("#MAXLite2_img").click(function () {
+            var url = '@Url.Action("Index", "MAXLite2DeviceList")';
+            location.href = url;
+         });
+
+
+        $("#MAXLite3_img").click(function () {
+            var url = '@Url.Action("Index", "MAXLite3DeviceList")';
+            location.href = url;
+        });
+
+        //$("#MAXAir_img").click(function () {
+        //    var url = '@Url.Action("Index", "MAXAirDeviceList")';
+       //     location.href = url;
+       // });
+
+        $("#MAXScene_img").click(function () {
+            var url = '@Url.Action("Index", "MAXSceneDeviceList")';
+            location.href = url;
+        });
+
+        $("#MAXBook_img").click(function () {
+            var url = '@Url.Action("Index", "MAXBookDeviceList")';
+            location.href = url;
+        });
+
+
+        $("#MAXAirSlider1").slider({
+            range: "min",
+            value: 0,
+            min: 0,
+            max: 51,
+            step: 1,
+            slide: function (event, ui) {
+                //$("#MAXAirBar1Progress").val(ui.value + "%");
+                $("#MAXAirBar1Progress").val("");
+                //console.log( "#MaxLiteBar1Progress val=" + ui.value );
+                //hexString = yourNumber.toString(16);   Convert a number to a hexadecimal string
+                //yourNumber = parseInt(hexString, 16);  reverse the above process
+                var uiValToHex = ui.value.toString(16);
+                if (uiValToHex.Length >= 3 || uiValToHex.Length <= 1) {
+                    console.log(ui.value + " - " + uiValToHex)
+                    uiValToHex = "0" + uiValToHex;
+                }
+                $("#MAXAirBar1HexText").val(uiValToHex);  //"Hex:" +
+                //var controller = "";
+                //var sliderBarValClientCallMethod = "MakeMAXAirDeviceBTClientCall";
+                var selectedBar = 1;
+                //var formatBTcmdToSend = $('#hidSelectedMAXAirDeviceCmd').val();
+                //formatBTcmdToSend = formatBTcmdToSend + uiValToHex;
+                //console.log("formatBTcmdToSend = " + formatBTcmdToSend);
+                //getMaxliteDeviceBTBarValCmdAjaxCall(currentController, BTMethodClientCall, formatBTcmdToSend, selectedBar)
+
+                if (ui.value <= 1) {
+                    $("#MAXAirBar1OnButton").css('color', '#262626');
+                    $("#MAXAirBar1OffButton").css('color', '#262626');
+                }
+                else {
+                    $("#MAXAirBar1OnButton").css('color', '#AD8C42');
+                    $("#MAXAirBar1OffButton").css('color', '#AD8C42');
+                }
+            }
+        });
+
+        $("#MAXAirSlider1 .tic").each(function (ind, elem) {
+            var c = $(elem).attr("class").split(" ");
+            var i = c.indexOf("tic");
+            c.splice(i, 1);
+            var pos = c.join("");
+            $(".slide-labels ." + pos).position({
+                my: "center bottom",
+                at: "right top-4",
+                of: $(elem)
+            });
+        });
+
+
+    });
+</script>
+
+@Html.Hidden("loginUserName", Session["userName"])
+@Html.Hidden("getSelectedMAXAirBleID", Session["MAXLite1SelectedBleID"])
+@Html.Hidden("getSelectedMAXAirBleSN", Session["MAXLite1SelectedBleSN"])
+<input id="formatInitMAXAir1OptionCallCmd" type="hidden" />

@@ -245,7 +245,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MAXAirDeviceKeyPanelController.cs" />
+    <Compile Include="Controllers\MAXAirDeviceListController.cs" />
+    <Compile Include="Controllers\MAXBookDeviceKeyPanelController.cs" />
+    <Compile Include="Controllers\MAXBookDeviceListController.cs" />
     <Compile Include="Controllers\MAXLite1DeviceKeyPanelController.cs" />
+    <Compile Include="Controllers\MAXLite1DeviceListController.cs" />
+    <Compile Include="Controllers\MAXLite2DeviceKeyPanelController.cs" />
+    <Compile Include="Controllers\MAXLite2DeviceListController.cs" />
+    <Compile Include="Controllers\MAXLite3DeviceKeyPanelController.cs" />
+    <Compile Include="Controllers\MAXLite3DeviceListController.cs" />
+    <Compile Include="Controllers\MAXSceneDeviceKeyPanelController.cs" />
+    <Compile Include="Controllers\MAXSceneDeviceListController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -668,10 +679,21 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\MAXLite1DeviceKeyPanel\Index.cshtml" />
+    <Content Include="Views\MAXLite1DeviceList\Index.cshtml" />
+    <Content Include="Views\MAXAirDeviceKeyPanel\Index.cshtml" />
+    <Content Include="Views\MAXLite2DeviceKeyPanel\Index.cshtml" />
+    <Content Include="Views\MAXLite2DeviceList\Index.cshtml" />
+    <Content Include="Views\MAXLite3DeviceKeyPanel\Index.cshtml" />
+    <Content Include="Views\MAXLite3DeviceList\Index.cshtml" />
+    <Content Include="Views\MAXAirDeviceList\Index.cshtml" />
+    <Content Include="Views\MAXBookDeviceKeyPanel\Index.cshtml" />
+    <Content Include="Views\MAXBookDeviceList\Index.cshtml" />
+    <Content Include="Views\MAXSceneDeviceList\Index.cshtml" />
+    <Content Include="Views\MAXSceneDeviceKeyPanel\Index.cshtml" />
+    <Content Include="Views\SignUp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SignUp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

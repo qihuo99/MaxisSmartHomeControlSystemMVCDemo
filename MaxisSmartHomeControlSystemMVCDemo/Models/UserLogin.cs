@@ -22,6 +22,7 @@ namespace MaxisSmartHomeControlSystemMVCDemo.Models
         public System.DateTime CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
 
+        public string ConfirmPassword { get; set; }
         public string LoginErrorMessage { get; internal set; }
     }
 }
